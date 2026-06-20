@@ -44,7 +44,7 @@ const { Header, Sider, Content, Footer } = Layout;
 
 // 自定义主题
 let customTheme = localStorage.getItem('customTheme') || 'dark';
-customTheme = 'light';
+customTheme = 'dark';
 
 // 菜单配置
 const menuItems = [
@@ -228,7 +228,7 @@ const AdminLayout = () => {
           <Menu
             className="s-menu"
             theme={customTheme}
-            openKeys={['/alarm', '/alarm/history']}
+            // openKeys={['/alarm', '/alarm/history']}
             inlineIndent={25}
             mode="inline"
             items={menuItems}

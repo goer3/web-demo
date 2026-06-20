@@ -30,11 +30,18 @@ body {
 
 .s-menu {
   height: calc(100vh - @logo-height);
+  border-inline-end: none !important;
   overflow-y: auto;
   scrollbar-width: thin;
   // scrollbar-gutter: stable; // 默认显示滚动条，即使没有溢出内容
-  scrollbar-color: #f5f5f5 #000000;
-  border-inline-end: none !important;
+
+  // light 滚动条
+  scrollbar-color: #dddddd #f7f8f9;
+}
+
+// dark 滚动条
+.s-menu.ant-menu-dark {
+  scrollbar-color: #dddddd #000000;
 }
 
 // 折叠时 group 标题替换为分割线
