@@ -19,12 +19,21 @@ body {
 .s-logo {
   height: @logo-height;
   line-height: @logo-height;
-  text-align: center;
 
   img {
     line-height: @logo-height;
     height: 25px;
     vertical-align: middle;
+    padding: 0 15px;
+  }
+}
+
+// 折叠时 logo 居中
+.ant-layout-sider-collapsed .s-logo {
+  text-align: center;
+
+  img {
+    padding: 0;
   }
 }
 
