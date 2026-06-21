@@ -46,8 +46,8 @@ const themeConfig = {
       bodyBg: '#ffffff',
       footerBg: '#ffffff',
       footerPadding: 0,
-      headerHeight: 60,
-      headerPadding: '0 20px'
+      headerHeight: 50,
+      headerPadding: '0 10px'
     },
     Dropdown: {
       paddingBlock: 5, // 菜单内边距垂直

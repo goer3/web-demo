@@ -319,7 +319,7 @@ const AdminLayout = () => {
       </ConfigProvider>
       <Layout>
         <Header className="s-header">
-          <Button type="text" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed(!collapsed)} />
+          <Button className="s-collapsed" type="text" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed(!collapsed)} />  
         </Header>
         <Content className="s-content">Content</Content>
         <Footer className="s-footer">Footer</Footer>
