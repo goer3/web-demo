@@ -81,7 +81,11 @@ const menuItems = [
             label: '告警历史',
             icon: <FieldTimeOutlined />,
             children: [
-              { key: '/alarm/history/todo', label: '等待处理', icon: <WarningTwoTone twoToneColor="#eb2f96" /> },
+              {
+                key: '/alarm/history/todo',
+                label: '等待处理',
+                icon: <WarningTwoTone twoToneColor="#eb2f96" />
+              },
               { key: '/alarm/history/finish', label: '完成处理', icon: <CheckOutlined /> }
             ]
           }
@@ -171,7 +175,12 @@ const dropdownItems = [
     key: '1',
     label: (
       <div className="s-trigger-menu">
-        <Badge size="small" className="s-badge-gender" count={GenerateGenderBadge(1)} offset={[-5, 23]}>
+        <Badge
+          size="small"
+          className="s-badge-gender"
+          count={GenerateGenderBadge(1)}
+          offset={[-5, 23]}
+        >
           <Avatar className="s-trigger-menu__avatar" size={30} src={DefaultAvatar} />
         </Badge>
         <div className="s-trigger-menu__info">
@@ -288,9 +297,17 @@ const AdminLayout = () => {
           collapsed={collapsed}
           trigger={
             <div className="s-trigger">
-              <Badge size="small" className="s-badge-gender" count={GenerateGenderBadge(1)} offset={[-6, 23]}>
+              <Badge
+                size="small"
+                className="s-badge-gender"
+                count={GenerateGenderBadge(1)}
+                offset={[-6, 23]}
+              >
                 {collapsed ? (
-                  <Dropdown menu={{ className: 's-trigger__menu', items: dropdownItems }} placement="rightBottom">
+                  <Dropdown
+                    menu={{ className: 's-trigger__menu', items: dropdownItems }}
+                    placement="rightBottom"
+                  >
                     <Avatar className="s-trigger__avatar" size={30} src={DefaultAvatar} />
                   </Dropdown>
                 ) : (
@@ -303,7 +320,10 @@ const AdminLayout = () => {
                     <div className="s-trigger__name">吴彦祖</div>
                     <div className="s-trigger__desc">互联网换皮工程师</div>
                   </div>
-                  <Dropdown menu={{ className: 's-trigger__menu', items: dropdownItems }} placement="rightBottom">
+                  <Dropdown
+                    menu={{ className: 's-trigger__menu', items: dropdownItems }}
+                    placement="rightBottom"
+                  >
                     <MoreOutlined style={{ cursor: 'pointer' }} />
                   </Dropdown>
                 </>
@@ -312,14 +332,29 @@ const AdminLayout = () => {
           }
         >
           <div className="s-logo" style={logoStyle}>
-            <img src={collapsed ? LogoCollapsed : customTheme === 'dark' ? LogoWhite : LogoBlack} alt="logo" />
+            <img
+              src={collapsed ? LogoCollapsed : customTheme === 'dark' ? LogoWhite : LogoBlack}
+              alt="logo"
+            />
           </div>
-          <Menu className="s-menu" theme={customTheme} openKeys={['/alarm', '/alarm/history']} inlineIndent={25} mode="inline" items={menuItems} />
+          <Menu
+            className="s-menu"
+            theme={customTheme}
+            // openKeys={['/alarm', '/alarm/history']}
+            inlineIndent={25}
+            mode="inline"
+            items={menuItems}
+          />
         </Sider>
       </ConfigProvider>
       <Layout>
         <Header className="s-header">
-          <Button className="s-collapsed" type="text" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed(!collapsed)} />  
+          <Button
+            className="s-collapsed"
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+          />
         </Header>
         <Content className="s-content">Content</Content>
         <Footer className="s-footer">Footer</Footer>
