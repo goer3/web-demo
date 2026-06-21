@@ -304,16 +304,13 @@ const AdminLayout = () => {
                 count={GenerateGenderBadge(1)}
                 offset={[-6, 23]}
               >
-                {collapsed ? (
-                  <Dropdown
-                    menu={{ className: 's-trigger__menu', items: dropdownItems }}
-                    placement="rightBottom"
-                  >
-                    <Avatar className="s-trigger__avatar" size={30} src={DefaultAvatar} />
-                  </Dropdown>
-                ) : (
+                <Dropdown
+                  menu={{ className: 's-trigger__menu', items: dropdownItems, tooltip: false }}
+                  disabled={!collapsed}
+                  placement="rightBottom"
+                >
                   <Avatar className="s-trigger__avatar" size={30} src={DefaultAvatar} />
-                )}
+                </Dropdown>
               </Badge>
               {!collapsed && (
                 <>
@@ -322,7 +319,7 @@ const AdminLayout = () => {
                     <div className="s-trigger__desc">互联网换皮工程师</div>
                   </div>
                   <Dropdown
-                    menu={{ className: 's-trigger__menu', items: dropdownItems }}
+                    menu={{ className: 's-trigger__menu', items: dropdownItems, tooltip: false }}
                     placement="rightBottom"
                   >
                     <MoreOutlined style={{ cursor: 'pointer' }} />
