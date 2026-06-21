@@ -215,6 +215,7 @@ const dropdownItems = [
   }
 ];
 
+// sider 主题颜色定义
 const siderThemeColor = {
   light: {
     primaryColor: '#000000',
