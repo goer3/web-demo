@@ -45,7 +45,6 @@ const { Header, Sider, Content, Footer } = Layout;
 
 // 自定义主题
 let customTheme = localStorage.getItem('customTheme') || 'dark';
-customTheme = 'dark';
 
 // 菜单配置
 const menuItems = [
@@ -160,6 +159,12 @@ const menuItems = [
   }
 ];
 
+// 切换主题
+const SwitchTheme = () => {
+  localStorage.setItem('customTheme', customTheme === 'dark' ? 'light' : 'dark');
+  window.location.reload();
+};
+
 // 下拉菜单配置
 const dropdownItems = [
   {
@@ -187,7 +192,8 @@ const dropdownItems = [
   {
     key: 'switchTheme',
     label: '切换主题',
-    icon: <BgColorsOutlined />
+    icon: <BgColorsOutlined />,
+    onClick: SwitchTheme
   },
   {
     type: 'divider'
@@ -267,8 +273,6 @@ const siderThemeConfig = {
 const logoStyle = {
   backgroundColor: siderThemeColor[customTheme].siderBg
 };
-
-const siderDropdownMenuStyle = {};
 
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
