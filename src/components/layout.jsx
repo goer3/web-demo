@@ -229,7 +229,7 @@ const siderThemeColor = {
     siderBg: '#000000',
     siderColor: '#ffffff',
     menu: {
-      itemSelectedColor: '#CC0033'
+      itemSelectedColor: '#cc0033'
     }
   }
 };
