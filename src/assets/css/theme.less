@@ -1,5 +1,13 @@
 // 定义 var 引用的变量
-@logo-height: 50px;
+@light-bg: #f7f8f9; // light 主题背景颜色
+@light-color: #000000; // light 主题文字颜色
+@dark-bg: #000000; // dark 主题背景颜色
+@dark-color: #ffffff; // dark 主题文字颜色
+@logo-height: 50px; // logo 高度
+@border-color: #e5e5e5; // 边框颜色
+@box-shadow: 0 0 5px @border-color; // 阴影颜色
+@box-shadow-right: 2px 0 5px @border-color; // 右侧阴影颜色
+@scrollbar-color: #dddddd; // 滚动条颜色
 
 html,
 body {
@@ -12,8 +20,8 @@ body {
   position: sticky;
   inset-inline-start: 0;
   top: 0;
-  border-right: 1px solid #e5e5e5;
-  box-shadow: 2px 0 5px #e5e5e5;
+  border-right: 1px solid @border-color;
+  box-shadow: @box-shadow-right;
 }
 
 .s-logo {
@@ -45,12 +53,12 @@ body {
   // scrollbar-gutter: stable; // 默认显示滚动条，即使没有溢出内容
 
   // light 滚动条
-  scrollbar-color: #dddddd #f7f8f9;
+  scrollbar-color: @scrollbar-color @light-bg;
 }
 
 // dark 滚动条
 .s-menu.ant-menu-dark {
-  scrollbar-color: #dddddd #000000;
+  scrollbar-color: @scrollbar-color @dark-bg;
 }
 
 // 折叠时 group 标题替换为分割线
@@ -67,10 +75,10 @@ body {
       &::before {
         content: '';
         display: block;
-        width: 20px;
+        width: 16px;
         height: 2px;
         margin: 15px auto;
-        background: #000000;
+        background: @light-color;
         border: none;
       }
     }
@@ -78,7 +86,7 @@ body {
 
   // dark 主题时分割线改为白色
   .ant-menu-dark .ant-menu-item-group + .ant-menu-item-group::before {
-    background: #ffffff;
+    background: #ff0000;
   }
 }
 
@@ -87,6 +95,6 @@ body {
   .ant-menu {
     // 弹出菜单内容偏移，避免与父菜单贴在一起，不好看
     margin-left: 5px;
-    box-shadow: 0 0 5px #e5e5e5;
+    box-shadow: @box-shadow;
   }
 }
