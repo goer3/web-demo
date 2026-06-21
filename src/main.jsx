@@ -37,7 +37,8 @@ const themeConfig = {
     paddingLG: 20,
     marginXL: 30,
     paddingXL: 30,
-    marginXXL: 40
+    marginXXL: 40,
+    colorError: '#CC0033'
   },
   components: {
     Layout: {
@@ -47,6 +48,13 @@ const themeConfig = {
       footerPadding: 0,
       headerHeight: 60,
       headerPadding: '0 20px'
+    },
+    Dropdown: {
+      paddingBlock: 5, // 菜单内边距垂直
+      controlPaddingHorizontal: 15, // 菜单内边距水平
+      lineHeight: '20px', // 菜单高度
+      fontSizeSM: 13, // 图标字体大小
+      marginXS: 10 // 图标和文字距离
     }
   }
 };

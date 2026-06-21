@@ -37,8 +37,9 @@ import {
   HeartTwoTone,
   BgColorsOutlined
 } from '@ant-design/icons';
-import { Button, Layout, Menu, ConfigProvider } from 'antd';
-import { LogoWhite, LogoBlack, LogoCollapsed } from '@/components/image';
+import { Button, Layout, Menu, Badge, ConfigProvider, Avatar, Dropdown, Space } from 'antd';
+import { LogoWhite, LogoBlack, LogoCollapsed, DefaultAvatar } from '@/components/image';
+import { GenerateGenderBadge } from '@/components/badge';
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -159,16 +160,62 @@ const menuItems = [
   }
 ];
 
+// 下拉菜单配置
+const dropdownItems = [
+  {
+    key: '1',
+    label: (
+      <div className="s-trigger-menu">
+        <Badge size="small" className="s-badge-gender" count={GenerateGenderBadge(1)} offset={[-5, 23]}>
+          <Avatar className="s-trigger-menu__avatar" size={30} src={DefaultAvatar} />
+        </Badge>
+        <div className="s-trigger-menu__info">
+          <div className="s-trigger-menu__name">吴彦祖</div>
+          <div className="s-trigger-menu__desc">互联网不知名换皮工程师</div>
+        </div>
+      </div>
+    )
+  },
+  {
+    type: 'divider'
+  },
+  {
+    key: 'profile',
+    label: '个人中心',
+    icon: <CreditCardOutlined />
+  },
+  {
+    key: 'switchTheme',
+    label: '切换主题',
+    icon: <BgColorsOutlined />
+  },
+  {
+    type: 'divider'
+  },
+  {
+    key: 'logout',
+    label: '注销登录',
+    danger: true,
+    icon: <LogoutOutlined />
+  }
+];
+
 const siderThemeColor = {
   light: {
     primaryColor: '#000000',
     siderBg: '#f7f8f9',
-    menu: {}
+    siderColor: '#000000',
+    menu: {
+      itemSelectedColor: '#0052d9'
+    }
   },
   dark: {
     primaryColor: '#000000',
     siderBg: '#000000',
-    menu: {}
+    siderColor: '#ffffff',
+    menu: {
+      itemSelectedColor: '#CC0033'
+    }
   }
 };
 
@@ -178,7 +225,12 @@ const siderThemeConfig = {
   token: {},
   components: {
     Layout: {
-      siderBg: siderThemeColor[customTheme].siderBg
+      siderBg: siderThemeColor[customTheme].siderBg,
+      triggerHeight: 60,
+      triggerBg: 'transparent',
+      triggerColor: siderThemeColor[customTheme].siderColor,
+      lightTriggerBg: siderThemeColor[customTheme].siderBg,
+      lightTriggerColor: siderThemeColor[customTheme].siderColor
     },
     Menu: {
       // 通用
@@ -190,23 +242,23 @@ const siderThemeConfig = {
       boxShadowSecondary: 'none',
       collapsedIconSize: 16,
       dropdownWidth: 100,
-      subMenuItemSelectedColor: '#000000',
+      subMenuItemSelectedColor: siderThemeColor[customTheme].siderColor,
       groupTitleLineHeight: '30px',
       itemActiveBg: 'transparent',
       // light 主题
-      itemBg: '#f7f8f9',
-      itemColor: '#000000',
-      subMenuItemBg: '#f7f8f9',
-      itemSelectedBg: '#f7f8f9',
-      itemSelectedColor: '#0052d9',
-      popupBg: '#f7f8f9',
+      itemBg: siderThemeColor[customTheme].siderBg,
+      itemColor: siderThemeColor[customTheme].siderColor,
+      subMenuItemBg: siderThemeColor[customTheme].siderBg,
+      itemSelectedBg: siderThemeColor[customTheme].siderBg,
+      itemSelectedColor: siderThemeColor[customTheme].menu.itemSelectedColor,
+      popupBg: siderThemeColor[customTheme].siderBg,
       // dark 主题
-      darkItemBg: '#000000',
-      darkItemColor: '#ffffff',
-      darkSubMenuItemBg: '#000000',
-      darkItemSelectedBg: '#000000',
-      darkItemSelectedColor: '#ff0000',
-      darkPopupBg: '#000000'
+      darkItemBg: siderThemeColor[customTheme].siderBg,
+      darkItemColor: siderThemeColor[customTheme].siderColor,
+      darkSubMenuItemBg: siderThemeColor[customTheme].siderBg,
+      darkItemSelectedBg: siderThemeColor[customTheme].siderBg,
+      darkItemSelectedColor: siderThemeColor[customTheme].menu.itemSelectedColor,
+      darkPopupBg: siderThemeColor[customTheme].siderBg
     }
   }
 };
@@ -216,23 +268,49 @@ const logoStyle = {
   backgroundColor: siderThemeColor[customTheme].siderBg
 };
 
+const siderDropdownMenuStyle = {};
+
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>
       <ConfigProvider theme={siderThemeConfig}>
-        <Sider className="s-sider" width={220} collapsedWidth={60} theme={customTheme} trigger={null} collapsible collapsed={collapsed}>
+        <Sider
+          className="s-sider"
+          width={220}
+          collapsedWidth={60}
+          theme={customTheme}
+          collapsible
+          collapsed={collapsed}
+          trigger={
+            <div className="s-trigger">
+              <Badge size="small" className="s-badge-gender" count={GenerateGenderBadge(1)} offset={[-6, 23]}>
+                {collapsed ? (
+                  <Dropdown menu={{ className: 's-trigger__menu', items: dropdownItems }} placement="rightBottom">
+                    <Avatar className="s-trigger__avatar" size={30} src={DefaultAvatar} />
+                  </Dropdown>
+                ) : (
+                  <Avatar className="s-trigger__avatar" size={30} src={DefaultAvatar} />
+                )}
+              </Badge>
+              {!collapsed && (
+                <>
+                  <div className="s-trigger__info">
+                    <div className="s-trigger__name">吴彦祖</div>
+                    <div className="s-trigger__desc">互联网换皮工程师</div>
+                  </div>
+                  <Dropdown menu={{ className: 's-trigger__menu', items: dropdownItems }} placement="rightBottom">
+                    <MoreOutlined style={{ cursor: 'pointer' }} />
+                  </Dropdown>
+                </>
+              )}
+            </div>
+          }
+        >
           <div className="s-logo" style={logoStyle}>
             <img src={collapsed ? LogoCollapsed : customTheme === 'dark' ? LogoWhite : LogoBlack} alt="logo" />
           </div>
-          <Menu
-            className="s-menu"
-            theme={customTheme}
-            // openKeys={['/alarm', '/alarm/history']}
-            inlineIndent={25}
-            mode="inline"
-            items={menuItems}
-          />
+          <Menu className="s-menu" theme={customTheme} openKeys={['/alarm', '/alarm/history']} inlineIndent={25} mode="inline" items={menuItems} />
         </Sider>
       </ConfigProvider>
       <Layout>
